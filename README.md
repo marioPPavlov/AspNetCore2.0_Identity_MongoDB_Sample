@@ -4,4 +4,4 @@ This example uses the a tweaked version of the adapter provided by <a href="http
 in order to be made usable for an Asp ASP.NET Core 2.0 project.
 
 <h1>Usage</h1>
-To get things running you will need a MongoDB instance up and running. Please see https://docs.mongodb.com/tutorials/install-mongodb-on-windows/ and you will need to edit the connectionstring in the appsettings.json file. 
+To get things running you will need a MongoDB instance up and running and you will need to edit the connectionstring in the appsettings.json file as well. Please see https://docs.mongodb.com/tutorials/install-mongodb-on-windows/ on how to set up a MongoDB client.
