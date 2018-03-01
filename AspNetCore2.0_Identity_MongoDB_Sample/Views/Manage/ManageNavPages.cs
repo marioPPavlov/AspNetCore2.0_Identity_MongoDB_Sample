@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace AspNetCore2._0_Identity_MongoDB_Sample.Views.Manage
+namespace AspNetCore2_Identity_MongoDB_Sample.Views.Manage
 {
     public static class ManageNavPages
     {

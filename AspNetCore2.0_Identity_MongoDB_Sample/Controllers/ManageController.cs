@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
+﻿using AspNetCore2_Identity_MongoDB_Sample.Infrastructure.MongoDB.Identity;
+using AspNetCore2_Identity_MongoDB_Sample.Models.ManageViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using AspNetCore2._0_Identity_MongoDB_Sample.Models;
-using AspNetCore2._0_Identity_MongoDB_Sample.Models.ManageViewModels;
-using AspNetCore2._0_Identity_MongoDB_Sample.Services;
+using System;
+using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
-namespace AspNetCore2._0_Identity_MongoDB_Sample.Controllers
+namespace AspNetCore2_Identity_MongoDB_Sample.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]
     public class ManageController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IEmailSender _emailSender;
+        private readonly UserManager<MongoUser> _userManager;
+        private readonly SignInManager<MongoUser> _signInManager;
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
 
@@ -30,15 +26,13 @@ namespace AspNetCore2._0_Identity_MongoDB_Sample.Controllers
         private const string RecoveryCodesKey = nameof(RecoveryCodesKey);
 
         public ManageController(
-          UserManager<ApplicationUser> userManager,
-          SignInManager<ApplicationUser> signInManager,
-          IEmailSender emailSender,
+          UserManager<MongoUser> userManager,
+          SignInManager<MongoUser> signInManager,
           ILogger<ManageController> logger,
           UrlEncoder urlEncoder)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
         }
@@ -122,9 +116,8 @@ namespace AspNetCore2._0_Identity_MongoDB_Sample.Controllers
             }
 
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
             var email = user.Email;
-            await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
+
 
             StatusMessage = "Verification email sent. Please check your email.";
             return RedirectToAction(nameof(Index));
@@ -522,12 +515,12 @@ namespace AspNetCore2._0_Identity_MongoDB_Sample.Controllers
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                _urlEncoder.Encode("AspNetCore2._0_Identity_MongoDB_Sample"),
+                _urlEncoder.Encode("AspNetCore2_Identity_MongoDB_Sample"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }
 
-        private async Task LoadSharedKeyAndQrCodeUriAsync(ApplicationUser user, EnableAuthenticatorViewModel model)
+        private async Task LoadSharedKeyAndQrCodeUriAsync(MongoUser user, EnableAuthenticatorViewModel model)
         {
             var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
             if (string.IsNullOrEmpty(unformattedKey))

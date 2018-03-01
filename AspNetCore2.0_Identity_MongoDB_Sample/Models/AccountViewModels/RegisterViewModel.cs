@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-
-namespace AspNetCore2._0_Identity_MongoDB_Sample.Models.AccountViewModels
+using AspNetCore2_Identity_MongoDB_Sample.Models.Constants;
+namespace AspNetCore2_Identity_MongoDB_Sample.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
@@ -14,7 +14,7 @@ namespace AspNetCore2._0_Identity_MongoDB_Sample.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = Registration.MinPasswordLength)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

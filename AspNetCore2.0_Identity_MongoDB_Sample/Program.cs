@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace AspNetCore2._0_Identity_MongoDB_Sample
+namespace AspNetCore2_Identity_MongoDB_Sample
 {
     public class Program
     {

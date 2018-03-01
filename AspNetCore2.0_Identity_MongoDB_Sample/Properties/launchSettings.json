@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "AspNetCore2._0_Identity_MongoDB_Sample": {
+    "AspNetCore2_Identity_MongoDB_Sample": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

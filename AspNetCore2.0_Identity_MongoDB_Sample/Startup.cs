@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AspNetCore2_Identity_MongoDB_Sample.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AspNetCore2._0_Identity_MongoDB_Sample.Data;
-using AspNetCore2._0_Identity_MongoDB_Sample.Models;
-using AspNetCore2._0_Identity_MongoDB_Sample.Services;
 
-namespace AspNetCore2._0_Identity_MongoDB_Sample
+namespace AspNetCore2_Identity_MongoDB_Sample
 {
     public class Startup
     {
@@ -26,15 +19,17 @@ namespace AspNetCore2._0_Identity_MongoDB_Sample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
-            // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddMongoIdentity(Configuration.GetConnectionString("DefaultConnection"),
+                    options =>
+                    {
+                        options.Password.RequireDigit = false;
+                        options.Password.RequireLowercase = false;
+                        options.Password.RequireUppercase = false;
+                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequiredUniqueChars = 0;
+                        options.Password.RequiredLength = 3;
+                    })
+                    .AddDefaultTokenProviders();
 
             services.AddMvc();
         }

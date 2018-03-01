@@ -1,5 +1,5 @@
-﻿@using AspNetCore2._0_Identity_MongoDB_Sample.Views.Manage
-@inject SignInManager<ApplicationUser> SignInManager
+﻿@using AspNetCore2_Identity_MongoDB_Sample.Views.Manage
+@inject SignInManager<MongoUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

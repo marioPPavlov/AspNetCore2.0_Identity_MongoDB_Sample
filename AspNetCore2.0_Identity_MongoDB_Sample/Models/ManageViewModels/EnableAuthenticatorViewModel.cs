@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace AspNetCore2._0_Identity_MongoDB_Sample.Models.ManageViewModels
+namespace AspNetCore2_Identity_MongoDB_Sample.Models.ManageViewModels
 {
     public class EnableAuthenticatorViewModel
     {

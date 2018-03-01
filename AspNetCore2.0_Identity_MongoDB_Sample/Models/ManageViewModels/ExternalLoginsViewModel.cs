@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 
-namespace AspNetCore2._0_Identity_MongoDB_Sample.Models.ManageViewModels
+namespace AspNetCore2_Identity_MongoDB_Sample.Models.ManageViewModels
 {
     public class ExternalLoginsViewModel
     {

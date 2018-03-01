@@ -1,6 +1,6 @@
 using System;
 
-namespace AspNetCore2._0_Identity_MongoDB_Sample.Models
+namespace AspNetCore2_Identity_MongoDB_Sample.Models
 {
     public class ErrorViewModel
     {

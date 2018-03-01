@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using AspNetCore2._0_Identity_MongoDB_Sample.Models;
+using AspNetCore2_Identity_MongoDB_Sample.Models;
 
-namespace AspNetCore2._0_Identity_MongoDB_Sample.Controllers
+namespace AspNetCore2_Identity_MongoDB_Sample.Controllers
 {
     public class HomeController : Controller
     {
